@@ -27,7 +27,7 @@ extern uint8_t BigFont[];
 extern unsigned int SAR[14400];
 extern unsigned int bck[4800];
 extern unsigned int fer[7000];
-extern unsigned int her[63600];
+//extern unsigned int her[63600];
 enum states {N,M,G,T,C,MM};
 
 // Set the pins to the correct ones for your development shield
@@ -119,6 +119,146 @@ int r;
    bool flag_set = false;
    bool flag_alarm = false;
    states stat = MM; 
+void SetTime()
+{
+  myGLCD.clrScr();
+     {
+     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.setColor(0, 255, 0);
+    myGLCD.setBackColor(0, 255, 0);
+
+    myGLCD.fillRoundRect (40, 20, 60, 40);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (40, 20, 60, 40);
+    //myGLCD.printNumI(1, 55, 130);
+    myGLCD.print("+",42,24);
+
+  }
+  
+   {
+     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.setColor(0, 255, 0);
+        myGLCD.setBackColor(0, 255, 0);
+
+    myGLCD.fillRoundRect (140, 20, 160, 40);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (140, 20, 160, 40);
+    //myGLCD.printNumI(1, 55, 130);
+    myGLCD.print("+",142,24);
+
+  }
+  
+   {
+     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.setColor(0, 255, 0);
+        myGLCD.setBackColor(0, 255, 0);
+
+    myGLCD.fillRoundRect (240, 20, 260, 40);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (240, 20, 260, 40);
+    //myGLCD.printNumI(1, 55, 130);
+    myGLCD.print("+",242,24);
+
+  }
+          myGLCD.setBackColor(0, 0, 0);
+
+    myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.printNumI(0, 20,50,2,'0');
+    myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.print(" : ", 83,70);
+    myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
+    //myGLCD.print("",120,80);
+    myGLCD.printNumI(0,120,50,2,'0');
+    myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.print(" : ", 183,70);
+    myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
+    //myGLCD.print(":",160,80);
+    myGLCD.printNumI(0,220,50,2,'0');
+    
+    
+     {
+                 myGLCD.setBackColor(0, 0, 255);
+
+     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.setColor(0, 0, 255);
+    myGLCD.fillRoundRect (10, 160, 90, 220);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (10, 160, 90, 220);
+    //myGLCD.printNumI(1, 55, 130);
+    myGLCD.print("Back",20,185);
+
+  }
+  
+  {
+              myGLCD.setBackColor(0, 0, 255);
+
+    myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.setColor(0, 0, 255);
+    myGLCD.fillRoundRect (220, 160, 300, 220);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (220, 160, 300, 220);
+    //myGLCD.printNumI(1, 55, 130);
+    myGLCD.print("Set",240,185);
+  }
+  
+  
+   {
+     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.setColor(255, 0, 0);
+    myGLCD.setBackColor(255, 0, 0);
+
+    myGLCD.fillRoundRect (40, 110, 60, 130);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (40, 110, 60,130);
+    //myGLCD.printNumI(1, 55, 130);
+    myGLCD.print("-",42,112);
+
+  }
+  
+   {
+     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.setColor(255, 0, 0);
+        myGLCD.setBackColor(255, 0, 0);
+
+    myGLCD.fillRoundRect (140, 110, 160,130);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (140, 110, 160, 130);
+    //myGLCD.printNumI(1, 55, 130);
+    myGLCD.print("-",142,112);
+
+  }
+  
+   {
+     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
+    myGLCD.setColor(255, 0, 0);
+        myGLCD.setBackColor(255, 0, 0);
+
+    myGLCD.fillRoundRect (240, 110, 260, 130);
+    myGLCD.setColor(255, 255, 255);
+    myGLCD.drawRoundRect (240, 110, 260, 130);
+    //myGLCD.printNumI(1, 55, 130);
+    myGLCD.print("-",242,112);
+
+  }
+  
+  
+  
+  while(flag_set)
+  {
+        if(myTouch.dataAvailable())
+    {
+      myTouch.read();
+      x = myTouch.getX();
+      y = myTouch.getY();
+      if(y>160 && y<220)
+      {
+        if(x>10 && x<90)
+        {
+
+  }
+ 
+  
+}
 
 void setup()
 {
@@ -228,7 +368,7 @@ void Time(){
         {
           flag_set = true;
             waitForIt(115, 160, 195, 220);
-            break;
+            SetTime();
         }
          if(x>220 && x<300)
         {
@@ -321,7 +461,8 @@ void loop()
          flag_back =false;
          flag_set = false;
          flag_alarm = false;
-       Time();
+         Time();
+         break;
     case C:
        Serial.println("C");
        Calib();
