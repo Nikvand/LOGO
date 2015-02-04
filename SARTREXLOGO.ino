@@ -50,63 +50,8 @@ char stCurrent[20]="";
 int stCurrentLen=0;
 char stLast[20]="";
 
-void drawButtons()
-{
-// Draw the upper row of buttons
-// Draw the center row of buttons
-  {
-    myGLCD.setColor(0, 0, 255);
-    myGLCD.fillRoundRect (10, 90, 80, 150);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (10, 90, 80, 150);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("Monitor",20,115);
-
-  }
-  
-    {
-    myGLCD.setColor(0, 0, 255);
-    myGLCD.fillRoundRect (10, 160, 80, 220);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (10, 160, 80, 220);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("Calib.",20,185);
-
-  }
-  
-   x = 30;
-    {
-    myGLCD.setColor(0, 0, 255);
-    myGLCD.fillRoundRect (200+x, 90, 280+x, 150);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (200+x, 90, 280+x, 150);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("Graph",220+x,115);
-
-  }
-  
- {
-    myGLCD.setColor(0, 0, 255);
-    myGLCD.fillRoundRect (200+x, 160, 280+x, 220);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (200+x, 160, 280+x, 220);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("Time",220+x,185);
-
-  }
-}
 
 
-// Draw a red frame while a button is touched
-void waitForIt(int x1, int y1, int x2, int y2)
-{
-  myGLCD.setColor(255, 0, 0);
-  myGLCD.drawRoundRect (x1, y1, x2, y2);
-  while (myTouch.dataAvailable())
-  myTouch.read();
-  myGLCD.setColor(255, 255, 255);
-  myGLCD.drawRoundRect (x1, y1, x2, y2);
-}
 
 /*************************
 **  Required functions  **
@@ -118,147 +63,10 @@ int r;
    bool flag_back =false;
    bool flag_set = false;
    bool flag_alarm = false;
+   bool flag_set_back = false;
+   bool flag_set_done = false;
+
    states stat = MM; 
-void SetTime()
-{
-  myGLCD.clrScr();
-     {
-     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(0, 255, 0);
-    myGLCD.setBackColor(0, 255, 0);
-
-    myGLCD.fillRoundRect (40, 20, 60, 40);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (40, 20, 60, 40);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("+",42,24);
-
-  }
-  
-   {
-     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(0, 255, 0);
-        myGLCD.setBackColor(0, 255, 0);
-
-    myGLCD.fillRoundRect (140, 20, 160, 40);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (140, 20, 160, 40);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("+",142,24);
-
-  }
-  
-   {
-     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(0, 255, 0);
-        myGLCD.setBackColor(0, 255, 0);
-
-    myGLCD.fillRoundRect (240, 20, 260, 40);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (240, 20, 260, 40);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("+",242,24);
-
-  }
-          myGLCD.setBackColor(0, 0, 0);
-
-    myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.printNumI(0, 20,50,2,'0');
-    myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.print(" : ", 83,70);
-    myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
-    //myGLCD.print("",120,80);
-    myGLCD.printNumI(0,120,50,2,'0');
-    myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.print(" : ", 183,70);
-    myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
-    //myGLCD.print(":",160,80);
-    myGLCD.printNumI(0,220,50,2,'0');
-    
-    
-     {
-                 myGLCD.setBackColor(0, 0, 255);
-
-     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(0, 0, 255);
-    myGLCD.fillRoundRect (10, 160, 90, 220);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (10, 160, 90, 220);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("Back",20,185);
-
-  }
-  
-  {
-              myGLCD.setBackColor(0, 0, 255);
-
-    myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(0, 0, 255);
-    myGLCD.fillRoundRect (220, 160, 300, 220);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (220, 160, 300, 220);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("Set",240,185);
-  }
-  
-  
-   {
-     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(255, 0, 0);
-    myGLCD.setBackColor(255, 0, 0);
-
-    myGLCD.fillRoundRect (40, 110, 60, 130);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (40, 110, 60,130);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("-",42,112);
-
-  }
-  
-   {
-     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(255, 0, 0);
-        myGLCD.setBackColor(255, 0, 0);
-
-    myGLCD.fillRoundRect (140, 110, 160,130);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (140, 110, 160, 130);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("-",142,112);
-
-  }
-  
-   {
-     myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(255, 0, 0);
-        myGLCD.setBackColor(255, 0, 0);
-
-    myGLCD.fillRoundRect (240, 110, 260, 130);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (240, 110, 260, 130);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("-",242,112);
-
-  }
-  
-  
-  
-  while(flag_set)
-  {
-        if(myTouch.dataAvailable())
-    {
-      myTouch.read();
-      x = myTouch.getX();
-      y = myTouch.getY();
-      if(y>160 && y<220)
-      {
-        if(x>10 && x<90)
-        {
-
-  }
- 
-  
-}
 
 void setup()
 {
@@ -273,123 +81,7 @@ void setup()
 
 
 
-void Monitor(){   
-  myGLCD.clrScr();
-  for (int i=0; i<100; i++)
-  {
-    myGLCD.setColor(random(255), random(255), random(255));
-    x=32+random(256);
-    y=45+random(146);
-    r=random(30);
-    myGLCD.drawCircle(x, y, r);
-  }
-}
 
-
-void Time(){ 
-  
-  myGLCD.clrScr();
- myGLCD.setBackColor(0,0,0);
-  //void printNumI(long num, int x, int y, int length=0, char filler=' ');
-   {
-     myGLCD.setFont(SmallFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(0, 0, 255);
-    myGLCD.fillRoundRect (10, 160, 90, 220);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (10, 160, 90, 220);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("Back",35,185);
-
-  }
-   {
-     myGLCD.setFont(SmallFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(0, 0, 255);
-    myGLCD.fillRoundRect (115, 160, 195, 220);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (115, 160, 195, 220);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("SET TIME",125,185);
-
-  }
-  
-  {
-    myGLCD.setFont(SmallFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.setColor(0, 0, 255);
-    myGLCD.fillRoundRect (220, 160, 300, 220);
-    myGLCD.setColor(255, 255, 255);
-    myGLCD.drawRoundRect (220, 160, 300, 220);
-    //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("SET ALARM",225,185);
-  }
-  //waitForIt(int x1, int y1, int x2, int y2)
-  while(!flag_set && !flag_alarm && !flag_back)
-  {
-      //myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    //myGLCD.print("Time : Date ", CENTER,20);
-    myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.printNumI(day(), 20,20,2,'0');
-        myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.print(" / ", 83,55);
-        myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
-
-    myGLCD.printNumI(month(), 120,20,2,'0');
-    myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.print(" / ", 183,55);
-    myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.printNumI((year()-2000), 220,20,2,'0');
-
-    myGLCD.printNumI(hour(), 20,80,2,'0');
-           myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.print(" : ", 83,100);
-        myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
-    //myGLCD.print("",120,80);
-    myGLCD.printNumI(minute(),120,80,2,'0');
-           myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-    myGLCD.print(" : ", 183,100);
-        myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
-    //myGLCD.print(":",160,80);
-    myGLCD.printNumI(second(),220,80,2,'0');
-    delay(800);
-    
-    if(myTouch.dataAvailable())
-    {
-      myTouch.read();
-      x = myTouch.getX();
-      y = myTouch.getY();
-      if(y>160 && y<220)
-      {
-        if(x>10 && x<90)
-        {
-          flag_back = true;
-          waitForIt(10, 160, 90, 220);
-          break;
-        }
-        if(x>115 && x<195)
-        {
-          flag_set = true;
-            waitForIt(115, 160, 195, 220);
-            SetTime();
-        }
-         if(x>220 && x<300)
-        {
-          flag_alarm = true;
-          waitForIt(220, 160, 300, 220);
-          break;
-        }
-      }
-    }
-
-  }
-
-}
-void Graph(){
-  myGLCD.clrScr();
-}
-void Calib(){  myGLCD.clrScr();
-while(!myTouch.dataAvailable()){
-      myGLCD.drawBitmap(10,10,250,350,fer,1);}
-
-}
 
 void loop()
 {
@@ -398,15 +90,19 @@ void loop()
       myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
       myGLCD.fillScr(255, 255, 255);
       myGLCD.setColor(255, 255, 255);
-      myGLCD.setContrast(255);
-      myGLCD.setBrightness(255);
-      myGLCD.drawBitmap(0,0,80,60,bck,4);
-      myGLCD.setBackColor(VGA_MAROON);
+      myGLCD.setContrast(64);
+      myGLCD.setBrightness(16);
+      myGLCD.setColor(VGA_AQUA);
+      //myGLCD.drawBitmap(0,0,80,60,bck,4);
+      myGLCD.setBackColor(255,255,255);   //VGA_MAROON
       myGLCD.print(" SARTREX Inc. ", CENTER,28);
       myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
-      myGLCD.setBackColor(VGA_OLIVE);
+      //myGLCD.setBackColor(VGA_OLIVE);
       myGLCD.print("Detection System ", CENTER,45);
+      myGLCD.setColor(255, 255, 255);
+
       myGLCD.drawBitmap(95,95,120,120,SAR);
+      myGLCD.setBackColor(0,0,255);
       myGLCD.setFont(SmallFont); //SmallFont SevenSegNumFont BigFont
       drawButtons(); 
       stat = MM;

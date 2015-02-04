@@ -1,0 +1,5 @@
+
+
+void Graph(){
+  myGLCD.clrScr();
+}
