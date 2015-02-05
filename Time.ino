@@ -5,6 +5,7 @@ void Time(){
   while(!flag_set && !flag_alarm && !flag_back)
   {
       myGLCD.setBackColor(0,0,0);
+          myGLCD.setColor(255,255,255);
 
       //myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
     //myGLCD.print("Time : Date ", CENTER,20);
@@ -20,6 +21,7 @@ void Time(){
     myGLCD.setFont(SevenSegNumFont); //SmallFont SevenSegNumFont BigFont
     myGLCD.printNumI((year()-2000), 220,20,2,'0');
 
+    myGLCD.setColor(0,255,0);
     myGLCD.printNumI(hour(), 20,80,2,'0');
            myGLCD.setFont(BigFont); //SmallFont SevenSegNumFont BigFont
     myGLCD.print(" : ", 83,100);

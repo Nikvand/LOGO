@@ -10,7 +10,7 @@ void Timescreen()
     myGLCD.setColor(255, 255, 255);
     myGLCD.drawRoundRect (10, 160, 90, 220);
     //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("Back",17,185);
+    myGLCD.print("Back",18,185);
 
   }
    {
@@ -20,7 +20,7 @@ void Timescreen()
     myGLCD.setColor(255, 255, 255);
     myGLCD.drawRoundRect (115, 160, 195, 220);
     //myGLCD.printNumI(1, 55, 130);
-    myGLCD.print("Set",123,185);
+    myGLCD.print("Set",128,185);
 
   }
   

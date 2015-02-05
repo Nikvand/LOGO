@@ -17,6 +17,13 @@
 #include <UTouch.h>
 #include <avr/pgmspace.h>
 #include <Time.h>
+#include <SdFat.h>
+//#include <SD.h>
+
+// bitmap file to load as background.
+// must be 320x240 and in format output by ImageConverter565
+char bkgRaw[] = "ade.raw";
+
 
 // Declare which fonts we will be using
 extern uint8_t SmallFont[];
@@ -67,7 +74,24 @@ int r;
    bool flag_set_done = false;
 
    states stat = MM; 
-
+   
+uint8_t sdCS = 15; // SD_CS - chip select
+SdFat sd;
+SdFile inFile;
+void dispRaw(UTFT *utft,SdFile* inFile)
+{
+  char VH,VL;
+  int i,j = 0;
+  cbi(utft->P_CS, utft->B_CS);
+  for(i = 0; i < 240; i++) //320
+    for(j = 0; j < 320; j++) { //240
+      	VL = inFile->read();
+	VH = inFile->read();
+	utft->LCD_Write_DATA(VL,VH);
+}
+  //sbi(utft->P_CS, utft->B_CS);
+  //utft->clrXY();
+}
 void setup()
 {
   myGLCD.InitLCD();
