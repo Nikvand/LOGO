@@ -12,11 +12,27 @@ while(!myTouch.dataAvailable()){
     
       if (sd.begin(53,SPI_FULL_SPEED)) {
         Serial.println("SD INIT");
-        if (inFile.open(bkgRaw,O_READ)) {
+        if (inFile.open(bkgRaw[1],O_READ)) {
       Serial.println("SD CARD READING");
       dispRaw(&myGLCD,&inFile);
       inFile.close();
-    }    }
+    }    
+    delay(2000);
+            Serial.println("SD INIT");
+        if (inFile.open(bkgRaw[0],O_READ)) {
+      Serial.println("SD CARD READING");
+      dispRaw(&myGLCD,&inFile);
+      inFile.close();
+    }   
+    delay(2000);
+            Serial.println("SD INIT");
+        if (inFile.open(bkgRaw[2],O_READ)) {
+      Serial.println("SD CARD READING");
+      dispRaw(&myGLCD,&inFile);
+      inFile.close();
+    }   
+    
+}
   //if (!SD.begin(53)) {
     //Serial.println("initialization failed!");
     //return;
@@ -54,7 +70,8 @@ while(!myTouch.dataAvailable()){
     // if the file didn't open, print an error:
     //Serial.println("error opening test.txt");
   //}
-
+if(myTouch.dataAvailable())
+  break;
 }
 }
 

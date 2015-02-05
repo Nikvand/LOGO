@@ -22,7 +22,7 @@
 
 // bitmap file to load as background.
 // must be 320x240 and in format output by ImageConverter565
-char bkgRaw[] = "ade.raw";
+char bkgRaw[][10] = {"mbshr.raw","ade.raw","toot.raw"};
 
 
 // Declare which fonts we will be using
@@ -85,9 +85,15 @@ void dispRaw(UTFT *utft,SdFile* inFile)
   cbi(utft->P_CS, utft->B_CS);
   for(i = 0; i < 240; i++) //320
     for(j = 0; j < 320; j++) { //240
+        
       	VL = inFile->read();
 	VH = inFile->read();
-	utft->LCD_Write_DATA(VL,VH);
+    
+        //Serial.println(VL,HEX);
+        //Serial.println(VH,HEX);
+        utft->LCD_Write_DATA(VL,VH);
+        if(myTouch.dataAvailable())
+  break;
 }
   //sbi(utft->P_CS, utft->B_CS);
   //utft->clrXY();
